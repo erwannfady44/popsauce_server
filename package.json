@@ -13,9 +13,6 @@
     "sequelize": "^6.25.4",
     "sqlite3": "^5.1.2",
     "websocket": "^1.0.34",
-    "ws": "^8.11.0"
+    "ws": "^8.7.0"
   },
-  "devDependencies": {
-    "ws": "^8.11.0"
-  }
 }
