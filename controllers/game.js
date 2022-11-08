@@ -52,7 +52,7 @@ exports.play = (wss) => {
     })
 
     async function nextCard() {
-        wss.search = Math.floor(Math.random() * 721);
+        wss.search = Math.floor(Math.random() * 906);
         pokemon = await getPokemon();
 
         let url = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/";
