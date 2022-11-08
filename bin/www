@@ -89,7 +89,7 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-const ws = require('ws')
+const ws = require('websocket')
 const gameController = require('../controllers/game');
 const wss = new ws.Server({server: server, path: "/api/game/play"});
 gameController.play(wss);
