@@ -40,7 +40,7 @@ exports.play = (wss) => {
                 ws.pseudo = data.pseudo;
                 sendPlayerData();
             }
-            else if (data.answer === pokemon.name) {
+            else if (data.answer.toLowerCase() === pokemon.name.toLowerCase()) {
                 ws.send(JSON.stringify({state: "win"}));
                 ws.score += 1;
                 sendPlayerData();
