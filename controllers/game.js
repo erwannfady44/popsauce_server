@@ -30,7 +30,6 @@ exports.play = (wss) => {
         url += ".png";
 
         ws.send(JSON.stringify({
-            name: pokemon.name,
             url: url
         }))
 
