@@ -35,11 +35,16 @@ exports.play = (wss) => {
         }))
 
         ws.on('message', (msg) => {
+            console.log(msg.toString())
             const data = JSON.parse(msg.toString());
-            if (data.pseudo)
+            if (data.pseudo) {
                 ws.pseudo = data.pseudo;
-            if (data.answer === pokemon.name) {
+                sendPlayerData();
+            }
+            else if (data.answer === pokemon.name) {
                 ws.send(JSON.stringify({state: "win"}));
+                ws.score += 1;
+                sendPlayerData();
                 nextCard();
             }
             else
@@ -61,18 +66,26 @@ exports.play = (wss) => {
             url += pokemon.pokedexId
         url += ".png";
 
-        broadCast(0, {
+        broadCast(0, JSON.stringify({
             name: pokemon.name,
             url: url
-        })
+        }))
     }
 
 
 
     function broadCast(idGame, data) {
         for (let client of wss.clients) {
-            client.send(JSON.stringify(data));
+            client.send(data);
         }
+    }
+
+    function sendPlayerData() {
+        let data = [];
+        for (let client of wss.clients) {
+            data.push({pseudo: client.pseudo, score: client.score});
+        }
+        broadCast(0, JSON.stringify(data));
     }
 
     function getPokemon() {
