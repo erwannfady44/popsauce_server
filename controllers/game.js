@@ -67,7 +67,6 @@ exports.play = (wss) => {
         url += ".png";
 
         broadCast(0, JSON.stringify({
-            name: pokemon.name,
             url: url
         }))
     }
